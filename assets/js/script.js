@@ -22,7 +22,7 @@ if statements for the question and answer, if question is correct the nmove on, 
 
 */
 
-var questionBank = [
+const questionBank = [
     {
         question: "This is the first question",
         answers: [
@@ -34,7 +34,7 @@ var questionBank = [
     },
 
     {
-        question: "This is the second question",
+        question: "Question 2. This is the second question",
         answers: [
             { text: "Answer Choice 1", correct: false},
             { text: "Answer Choice 2", correct: true},
@@ -48,9 +48,47 @@ console.log(questionBank[0]); //Checking to see if my question bank is working
 
 var question = document.getElementById("question");
 var answerButton = document.getElementById("answer-button");
-var answerButton = document.getElementById("next-button");
+var nextButton = document.getElementById("next-button");
 
-var currentQuestion = 0;
+var currentQuestionNumber = 0;
+let score = 0;
+
+//console.log("Var question is: " + question); //H2 
+
+function startQuiz(){
+    currentQuestionNumber = 0;
+    score = 0;
+    nextButton.innerHTML = "Next";
+    showQuestion();
+}
+
+function showQuestion(){
+    resetButtons(); //Resets the current state and gets rid of all buttons that are existing
+    var currentQuestion = questionBank[currentQuestionNumber];
+    //console.log("Current question is: " + currentQuestion.question);
+    var questionNumber = currentQuestionNumber + 1;
+    question.innerHTML = questionNumber + "." + currentQuestion.question;
+   
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add("btn");
+        answerButton.appendChild(button);
+    })
+        
+    };
+
+ 
+//Will reset the button state every time we go to the next question.
+function resetButtons(){
+    nextButton.style.display = "none";
+    while(answerButton.firstChild){
+        answerButton.removeChild(answerButton.firstChild);
+    }
+}
+
+startQuiz();
 
 
 
