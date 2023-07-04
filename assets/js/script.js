@@ -24,7 +24,7 @@ if statements for the question and answer, if question is correct the nmove on, 
 
 const questionBank = [
     {
-        question: "This is the first question. How many Pokemon are there in the First Generation",
+        question: "This is the first question. How many Pokemon are there in the First Generation", 
         answers: [
             { text: "151", correct: true},
             { text: "Answer Choice 2", correct: false},
@@ -65,7 +65,51 @@ function displayQuestion(){
     selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
     selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
 
+    //Below are the button logics. If you select the button and it is true, then you move on to the next question. If false, you lose time and stay on the current question.
+
+    selectedAnswer1.addEventListener("click",function(){
+        
+        if (selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].correct == true){
+            console.log("Correct!");
+        }
+        else{
+            console.log("Incorrect!");
+        }
+    })
+
+    selectedAnswer2.addEventListener("click",function(){
+        
+        if (selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].correct == true){
+            console.log("Correct!");
+        }
+        else{
+            console.log("Incorrect!");
+        }
+    })
+
+    selectedAnswer3.addEventListener("click",function(){
+        
+        if (selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].correct == true){
+            console.log("Correct!");
+        }
+        else{
+            console.log("Incorrect!");
+        }
+    })
+
+    selectedAnswer4.addEventListener("click",function(){
+        
+        if (selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].correct == true){
+            console.log("Correct!");
+        }
+        else{
+            console.log("Incorrect!");
+        }
+    })
+
+
 }
+
 
 
 
