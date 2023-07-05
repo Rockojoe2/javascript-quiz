@@ -36,8 +36,8 @@ const questionBank = [
     {
         question: "Question 2. This is the second question",
         answers: [
-            { text: "Answer Choice 1", correct: false},
-            { text: "Answer Choice 2", correct: true},
+            { text: "Answer Choice 1", correct: true},
+            { text: "Answer Choice 2", correct: false},
             { text: "Answer Choice 3", correct: false},
             { text: "Answer Choice 4", correct: false},
         ]
@@ -65,12 +65,32 @@ function displayQuestion(){
     selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
     selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
 
-    //Below are the button logics. If you select the button and it is true, then you move on to the next question. If false, you lose time and stay on the current question.
+    //console.log(questionBank.length);
+
+
+    answerQuestion();
+
+
+
+}
+
+function answerQuestion(){
+
+     //Below are the button logics. If you select the button and it is true, then you move on to the next question. If false, you lose time and stay on the current question.
 
     selectedAnswer1.addEventListener("click",function(){
         
         if (selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].correct == true){
             console.log("Correct!");
+
+            currentQuestionNumber++;
+            
+            question.textContent = questionBank[currentQuestionNumber].question;
+            selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
+            selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
+            selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
+            selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+            
         }
         else{
             console.log("Incorrect!");
@@ -106,10 +126,7 @@ function displayQuestion(){
             console.log("Incorrect!");
         }
     })
-
-
 }
-
 
 
 
