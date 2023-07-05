@@ -59,11 +59,13 @@ const questionBank = [
 var question = document.getElementById("question");
 var answerButton = document.getElementById("answer-button");
 var nextButton = document.getElementById("next-button");
+var submitButton = document.getElementById("submit-button");
 var selectedAnswer1 = document.getElementById("first-choice");
 var selectedAnswer2 = document.getElementById("second-choice");
 var selectedAnswer3 = document.getElementById("third-choice");
 var selectedAnswer4 = document.getElementById("fourth-choice");
 var timerEl = document.getElementById('countdown');
+var initialInput = document.querySelector("#initials");
 
 var currentQuestionNumber = 0;
 let score = 0;
@@ -76,6 +78,8 @@ function startPage(){
     document.getElementById("second-choice").style.display = "none";
     document.getElementById("third-choice").style.display = "none";
     document.getElementById("fourth-choice").style.display = "none";
+    document.getElementById("initials").style.display = "none";
+    document.getElementById("submit-button").style.display = "none";
 
     question.textContent = "Welcome to the Javascript quiz! Click next to begin";
 
@@ -107,10 +111,7 @@ function displayQuestion(){
     //console.log(questionBank.length);
     // countdown();
 
-    if(currentQuestionNumber < questionBank.length)
-    {
-        answerQuestion();
-    }
+    answerQuestion();
   
     
 
@@ -118,32 +119,35 @@ function displayQuestion(){
 
 function answerQuestion(){
 
-     //Below are the button logics. If you select the button and it is true, then you move on to the next question. If false, you lose time and stay on the current question.
-
+    //Timer
     var timeLeft = 10;
     var timeInterval = setInterval(function () {
 
-  
-      timeLeft--;
-      timerEl.textContent = timeLeft + " seconds left.";
-  
-      if(timeLeft <= 0)
-      {
+    timeLeft--;
+    timerEl.textContent = timeLeft + " seconds left.";
+
+    if(timeLeft <= 0)
+    {
         clearInterval(timeInterval);
         displayGameOverMessage();
-      }
-  
+    }
+
     }, 1000);
+
+     //Below are the button logics. If you select the button and it is true, then you move on to the next question. If false, you lose time and stay on the current question.
 
     selectedAnswer1.addEventListener("click",function(){
         
         if (selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].correct == true){
             console.log("Correct!");
 
-            if(currentQuestionNumber < questionBank.length - 1){
+            //If the button selected is correct, you go onto the next question, and the next question is updated along with the buttons as long as there is an next question.
+
+            if(currentQuestionNumber <= questionBank.length){
 
                 currentQuestionNumber++;
-                
+                console.log(currentQuestionNumber);
+
                 question.textContent = questionBank[currentQuestionNumber].question;
                 selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
                 selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
@@ -228,7 +232,16 @@ function answerQuestion(){
 
   function displayGameOverMessage() {
 
+    //We'll give the player a game over screen and take away all the answer choices. Will add a box for them to put their initials to save hteir high score.
+
     timerEl.textContent = "GAME OVER";
+    question.textContent = "Please enter your initials to save your score!";
+    document.getElementById("initials").style.display = "block";
+    document.getElementById("submit-button").style.display = "block";
+    document.getElementById("first-choice").style.display = "none";
+    document.getElementById("second-choice").style.display = "none";
+    document.getElementById("third-choice").style.display = "none";
+    document.getElementById("fourth-choice").style.display = "none";
   }
 
   function highScore(){
