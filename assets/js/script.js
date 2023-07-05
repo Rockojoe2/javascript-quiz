@@ -53,6 +53,7 @@ var selectedAnswer1 = document.getElementById("first-choice");
 var selectedAnswer2 = document.getElementById("second-choice");
 var selectedAnswer3 = document.getElementById("third-choice");
 var selectedAnswer4 = document.getElementById("fourth-choice");
+var timerEl = document.getElementById('countdown');
 
 var currentQuestionNumber = 0;
 let score = 0;
@@ -66,17 +67,29 @@ function displayQuestion(){
     selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
 
     //console.log(questionBank.length);
-
-
+    // countdown();
     answerQuestion();
-
-
 
 }
 
 function answerQuestion(){
 
      //Below are the button logics. If you select the button and it is true, then you move on to the next question. If false, you lose time and stay on the current question.
+
+    var timeLeft = 10;
+    var timeInterval = setInterval(function () {
+
+  
+      timeLeft--;
+      timerEl.textContent = timeLeft + " seconds left.";
+  
+      if(timeLeft <= 0)
+      {
+        clearInterval(timeInterval);
+        displayGameOverMessage();
+      }
+  
+    }, 1000);
 
     selectedAnswer1.addEventListener("click",function(){
         
@@ -94,6 +107,7 @@ function answerQuestion(){
         }
         else{
             console.log("Incorrect!");
+            timeLeft = timeLeft - 5;
         }
     })
 
@@ -104,6 +118,7 @@ function answerQuestion(){
         }
         else{
             console.log("Incorrect!");
+            timeLeft = timeLeft - 5;
         }
     })
 
@@ -114,6 +129,7 @@ function answerQuestion(){
         }
         else{
             console.log("Incorrect!");
+            timeLeft = timeLeft - 5;
         }
     })
 
@@ -124,9 +140,17 @@ function answerQuestion(){
         }
         else{
             console.log("Incorrect!");
+            timeLeft = timeLeft - 5;
         }
     })
 }
+
+
+  function displayGameOverMessage() {
+
+    timerEl.textContent = "GAME OVER";
+  }
+
 
 
 
