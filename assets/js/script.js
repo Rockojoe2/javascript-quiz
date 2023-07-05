@@ -68,7 +68,35 @@ var timerEl = document.getElementById('countdown');
 var currentQuestionNumber = 0;
 let score = 0;
 
+function startPage(){
+
+    //Hide the buttons in start page
+
+    document.getElementById("first-choice").style.display = "none";
+    document.getElementById("second-choice").style.display = "none";
+    document.getElementById("third-choice").style.display = "none";
+    document.getElementById("fourth-choice").style.display = "none";
+
+    question.textContent = "Welcome to the Javascript quiz! Click next to begin";
+
+    //Makes so when the next is clicked, the quiz begins
+
+    nextButton.addEventListener("click",function(){
+        displayQuestion();
+    })
+    
+}
+
 function displayQuestion(){
+
+    //Reveal buttons again and hide next button
+
+    document.getElementById("first-choice").style.display = "block";
+    document.getElementById("second-choice").style.display = "block";
+    document.getElementById("third-choice").style.display = "block";
+    document.getElementById("fourth-choice").style.display = "block";
+    document.getElementById("next-button").style.display = "none"; 
+
 
     question.textContent = questionBank[currentQuestionNumber].question;
     selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
@@ -83,6 +111,7 @@ function displayQuestion(){
     {
         answerQuestion();
     }
+  
     
 
 }
@@ -121,9 +150,7 @@ function answerQuestion(){
                 selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
                 selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
             }
-
-            
-            
+        
         }
         else{
             console.log("Incorrect!");
@@ -204,12 +231,13 @@ function answerQuestion(){
     timerEl.textContent = "GAME OVER";
   }
 
+  function highScore(){
+    timerEl.textContent = "Enter your initials!";
+  }
 
 
-
-displayQuestion();
-
-
+startPage();
+//displayQuestion();
 
 
 
