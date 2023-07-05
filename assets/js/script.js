@@ -24,22 +24,22 @@ if statements for the question and answer, if question is correct the nmove on, 
 
 const questionBank = [
     {
-        question: "This is the first question. How many Pokemon are there in the First Generation", 
+        question: "Javascript is an _______ language?", 
         answers: [
-            { text: "151", correct: true},
-            { text: "Answer Choice 2", correct: false},
-            { text: "Answer Choice 3", correct: false},
-            { text: "Answer Choice 4", correct: false},
+            { text: "Procedural", correct: false},
+            { text: "Object Oriented", correct: true},
+            { text: "Object-Based", correct: false},
+            { text: "None of the above", correct: false},
         ]
     },
 
     {
-        question: "Question 2. This is the second question",
+        question: "Which of the following keywords is used to define a variable in Javascript?",
         answers: [
-            { text: "Answer Choice 1", correct: true},
-            { text: "Answer Choice 2", correct: true},
-            { text: "Answer Choice 3", correct: false},
-            { text: "Answer Choice 4", correct: false},
+            { text: "var", correct: false},
+            { text: "let", correct: false},
+            { text: "Both A and B", correct: true},
+            { text: "None of the above", correct: false},
         ]
     },
 
@@ -66,9 +66,11 @@ var selectedAnswer3 = document.getElementById("third-choice");
 var selectedAnswer4 = document.getElementById("fourth-choice");
 var timerEl = document.getElementById('countdown');
 var initialInput = document.querySelector("#initials");
+var viewScore = document.getElementById('view-score');
 
 var currentQuestionNumber = 0;
 let score = 0;
+var timeLeft = 10;
 
 function startPage(){
 
@@ -120,10 +122,11 @@ function displayQuestion(){
 function answerQuestion(){
 
     //Timer
-    var timeLeft = 10;
+    
     var timeInterval = setInterval(function () {
 
     timeLeft--;
+    timerEl.value = timeLeft;
     timerEl.textContent = timeLeft + " seconds left.";
 
     if(timeLeft <= 0)
@@ -133,6 +136,7 @@ function answerQuestion(){
     }
 
     }, 1000);
+
 
      //Below are the button logics. If you select the button and it is true, then you move on to the next question. If false, you lose time and stay on the current question.
 
@@ -148,13 +152,21 @@ function answerQuestion(){
                 currentQuestionNumber++;
                 console.log(currentQuestionNumber);
 
-                question.textContent = questionBank[currentQuestionNumber].question;
-                selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
-                selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
-                selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
-                selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
-            }
-        
+                if(currentQuestionNumber == questionBank.length)
+                {
+                    clearInterval(timeInterval);
+                    completedQuiz();
+                }
+                else{
+
+                    question.textContent = questionBank[currentQuestionNumber].question;
+                    selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
+                    selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
+                    selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
+                    selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+
+                }                
+            }       
         }
         else{
             console.log("Incorrect!");
@@ -170,12 +182,20 @@ function answerQuestion(){
             if(currentQuestionNumber < questionBank.length - 1){
 
                 currentQuestionNumber++;
-                
-                question.textContent = questionBank[currentQuestionNumber].question;
-                selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
-                selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
-                selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
-                selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+
+                if(currentQuestionNumber == questionBank.length)
+                {
+                    clearInterval(timeInterval);
+                    completedQuiz();
+                }
+                else
+                {
+                    question.textContent = questionBank[currentQuestionNumber].question;
+                    selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
+                    selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
+                    selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
+                    selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+                }
             }
         }
         else{
@@ -192,12 +212,21 @@ function answerQuestion(){
             if(currentQuestionNumber < questionBank.length - 1){
 
                 currentQuestionNumber++;
-                
-                question.textContent = questionBank[currentQuestionNumber].question;
-                selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
-                selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
-                selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
-                selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+
+                if(currentQuestionNumber == questionBank.length)
+                {
+                    clearInterval(timeInterval);
+                    completedQuiz();
+                }
+
+                else
+                {
+                    question.textContent = questionBank[currentQuestionNumber].question;
+                    selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
+                    selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
+                    selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
+                    selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+                }
             }
         }
         else{
@@ -214,12 +243,21 @@ function answerQuestion(){
             if(currentQuestionNumber < questionBank.length - 1){
 
                 currentQuestionNumber++;
+
+                if(currentQuestionNumber == questionBank.length)
+                {
+                    clearInterval(timeInterval);
+                    completedQuiz();
+                }
+                else
+                {
+                    question.textContent = questionBank[currentQuestionNumber].question;
+                    selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
+                    selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
+                    selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
+                    selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+                }
                 
-                question.textContent = questionBank[currentQuestionNumber].question;
-                selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
-                selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
-                selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
-                selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
             }
         }
         else{
@@ -242,75 +280,44 @@ function answerQuestion(){
     document.getElementById("second-choice").style.display = "none";
     document.getElementById("third-choice").style.display = "none";
     document.getElementById("fourth-choice").style.display = "none";
+
+    submitButton.addEventListener("click",function(){
+
+        var finalScore = 
+        {
+            initials: initials.value,
+            score: timeLeft 
+        };
+        localStorage.setItem("userScore", JSON.stringify(finalScore));
+
+    })
   }
 
-  function highScore(){
-    timerEl.textContent = "Enter your initials!";
-  }
 
+  function completedQuiz(){
+    question.textContent = "Congratulations you've completed the quiz! Please Enter your initials! Your score is: " + timeLeft;
+    clearInterval(timerEl);
+    timerEl.textContent = " ";
+    document.getElementById("initials").style.display = "block";
+    document.getElementById("submit-button").style.display = "block";
+    document.getElementById("first-choice").style.display = "none";
+    document.getElementById("second-choice").style.display = "none";
+    document.getElementById("third-choice").style.display = "none";
+    document.getElementById("fourth-choice").style.display = "none";
+
+    
+
+
+    submitButton.addEventListener("click",function(){
+
+        var finalScore = {
+            initials: initials.value,
+            score: timeLeft 
+        };
+        localStorage.setItem("userScore", JSON.stringify(finalScore));
+
+
+    })  
+  }
 
 startPage();
-//displayQuestion();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//OLD CODE BELOW
-
-
-//console.log("Var question is: " + question); //H2 
-
-// function startQuiz(){
-//     currentQuestionNumber = 0;
-//     score = 0;
-//     nextButton.innerHTML = "Next";
-//     showQuestion();
-// }
-
-// function showQuestion(){
-//     resetButtons(); //Resets the current state and gets rid of all buttons that are existing
-//     var currentQuestion = questionBank[currentQuestionNumber];
-//     //console.log("Current question is: " + currentQuestion.question);
-
-//     var questionNumber = currentQuestionNumber + 1;
-//     question.innerHTML = questionNumber + "." + currentQuestion.question;
-
-
-   
-
-//     currentQuestion.answers.forEach(answer => {
-//         //console.log(answer);
-//         const button = document.createElement("button");
-//         button.innerHTML = answer.text;
-//         button.classList.add("btn");
-//         answerButton.appendChild(button);
-//     })
-//     };
-
- 
-// //Will reset the button state every time we go to the next question.
-// function resetButtons(){
-//     nextButton.style.display = "none";
-//     while(answerButton.firstChild){
-//         answerButton.removeChild(answerButton.firstChild);
-//     }
-// }
-
-
-
-// startQuiz();
-
-
-
-
-
