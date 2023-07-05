@@ -37,8 +37,18 @@ const questionBank = [
         question: "Question 2. This is the second question",
         answers: [
             { text: "Answer Choice 1", correct: true},
-            { text: "Answer Choice 2", correct: false},
+            { text: "Answer Choice 2", correct: true},
             { text: "Answer Choice 3", correct: false},
+            { text: "Answer Choice 4", correct: false},
+        ]
+    },
+
+    {
+        question: "Question 3. This is the third question",
+        answers: [
+            { text: "Answer Choice 1", correct: true},
+            { text: "Answer Choice 2", correct: false},
+            { text: "Answer Choice 3", correct: true},
             { text: "Answer Choice 4", correct: false},
         ]
     }
@@ -68,7 +78,12 @@ function displayQuestion(){
 
     //console.log(questionBank.length);
     // countdown();
-    answerQuestion();
+
+    if(currentQuestionNumber < questionBank.length)
+    {
+        answerQuestion();
+    }
+    
 
 }
 
@@ -96,13 +111,18 @@ function answerQuestion(){
         if (selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].correct == true){
             console.log("Correct!");
 
-            currentQuestionNumber++;
+            if(currentQuestionNumber < questionBank.length - 1){
+
+                currentQuestionNumber++;
+                
+                question.textContent = questionBank[currentQuestionNumber].question;
+                selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
+                selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
+                selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
+                selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+            }
+
             
-            question.textContent = questionBank[currentQuestionNumber].question;
-            selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
-            selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
-            selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
-            selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
             
         }
         else{
@@ -115,6 +135,17 @@ function answerQuestion(){
         
         if (selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].correct == true){
             console.log("Correct!");
+
+            if(currentQuestionNumber < questionBank.length - 1){
+
+                currentQuestionNumber++;
+                
+                question.textContent = questionBank[currentQuestionNumber].question;
+                selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
+                selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
+                selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
+                selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+            }
         }
         else{
             console.log("Incorrect!");
@@ -126,6 +157,17 @@ function answerQuestion(){
         
         if (selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].correct == true){
             console.log("Correct!");
+
+            if(currentQuestionNumber < questionBank.length - 1){
+
+                currentQuestionNumber++;
+                
+                question.textContent = questionBank[currentQuestionNumber].question;
+                selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
+                selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
+                selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
+                selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+            }
         }
         else{
             console.log("Incorrect!");
@@ -137,6 +179,17 @@ function answerQuestion(){
         
         if (selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].correct == true){
             console.log("Correct!");
+
+            if(currentQuestionNumber < questionBank.length - 1){
+
+                currentQuestionNumber++;
+                
+                question.textContent = questionBank[currentQuestionNumber].question;
+                selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
+                selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].text;
+                selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].text;
+                selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].text;
+            }
         }
         else{
             console.log("Incorrect!");
