@@ -44,12 +44,32 @@ const questionBank = [
     },
 
     {
-        question: "Question 3. This is the third question",
+        question: "Which of the following methods is used to access HTML elements using Javascript?",
         answers: [
-            { text: "Answer Choice 1", correct: true},
-            { text: "Answer Choice 2", correct: false},
-            { text: "Answer Choice 3", correct: true},
-            { text: "Answer Choice 4", correct: false},
+            { text: "getElementbyId()", correct: false},
+            { text: "getElementsByClassName()", correct: false},
+            { text: "Both A and B", correct: true},
+            { text: "None of the above", correct: false},
+        ]
+    },
+
+    {
+        question: "Upon encountering empty statements, what does the Javascript Interpreter do?",
+        answers: [
+            { text: "Ignores the statements", correct: true},
+            { text: "Throws an error", correct: false},
+            { text: "Gives us a warning", correct: false},
+            { text: "None of the above", correct: false},
+        ]
+    },
+
+    {
+        question: "When an operator's value is NULL, the typeof returned by the unary operator is:",
+        answers: [
+            { text: "Undefined", correct: false},
+            { text: "Boolean", correct: false},
+            { text: "Integer", correct: false},
+            { text: "Object", correct: true},
         ]
     }
 ];
@@ -67,10 +87,13 @@ var selectedAnswer4 = document.getElementById("fourth-choice");
 var timerEl = document.getElementById('countdown');
 var initialInput = document.querySelector("#initials");
 var viewScore = document.getElementById('view-score');
+var message = document.getElementById("message");
+
+message.textContent = ""; //Need this to not get null error message when submitting
 
 var currentQuestionNumber = 0;
 let score = 0;
-var timeLeft = 10;
+var timeLeft = 30;
 
 function startPage(){
 
@@ -102,6 +125,7 @@ function displayQuestion(){
     document.getElementById("third-choice").style.display = "block";
     document.getElementById("fourth-choice").style.display = "block";
     document.getElementById("next-button").style.display = "none"; 
+    document.getElementById("view-score").style.display = "none";
 
 
     question.textContent = questionBank[currentQuestionNumber].question;
@@ -143,7 +167,7 @@ function answerQuestion(){
     selectedAnswer1.addEventListener("click",function(){
         
         if (selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].correct == true){
-            console.log("Correct!");
+            //console.log("Correct!");
 
             //If the button selected is correct, you go onto the next question, and the next question is updated along with the buttons as long as there is an next question.
 
@@ -169,7 +193,7 @@ function answerQuestion(){
             }       
         }
         else{
-            console.log("Incorrect!");
+            //console.log("Incorrect!");
             timeLeft = timeLeft - 5;
         }
     })
@@ -177,9 +201,9 @@ function answerQuestion(){
     selectedAnswer2.addEventListener("click",function(){
         
         if (selectedAnswer2.textContent = questionBank[currentQuestionNumber].answers[1].correct == true){
-            console.log("Correct!");
+            //console.log("Correct!");
 
-            if(currentQuestionNumber < questionBank.length - 1){
+            if(currentQuestionNumber <= questionBank.length){
 
                 currentQuestionNumber++;
 
@@ -199,7 +223,7 @@ function answerQuestion(){
             }
         }
         else{
-            console.log("Incorrect!");
+           //console.log("Incorrect!");
             timeLeft = timeLeft - 5;
         }
     })
@@ -209,7 +233,7 @@ function answerQuestion(){
         if (selectedAnswer3.textContent = questionBank[currentQuestionNumber].answers[2].correct == true){
             console.log("Correct!");
 
-            if(currentQuestionNumber < questionBank.length - 1){
+            if(currentQuestionNumber <= questionBank.length){
 
                 currentQuestionNumber++;
 
@@ -230,7 +254,7 @@ function answerQuestion(){
             }
         }
         else{
-            console.log("Incorrect!");
+            //console.log("Incorrect!");
             timeLeft = timeLeft - 5;
         }
     })
@@ -240,7 +264,7 @@ function answerQuestion(){
         if (selectedAnswer4.textContent = questionBank[currentQuestionNumber].answers[3].correct == true){
             console.log("Correct!");
 
-            if(currentQuestionNumber < questionBank.length - 1){
+            if(currentQuestionNumber <= questionBank.length){
 
                 currentQuestionNumber++;
 
@@ -261,7 +285,7 @@ function answerQuestion(){
             }
         }
         else{
-            console.log("Incorrect!");
+            //console.log("Incorrect!");
             timeLeft = timeLeft - 5;
         }
     })
@@ -289,6 +313,7 @@ function answerQuestion(){
             score: timeLeft 
         };
         localStorage.setItem("userScore", JSON.stringify(finalScore));
+        message.textContent = "Thank you for your submission";
 
     })
   }
@@ -315,9 +340,11 @@ function answerQuestion(){
             score: timeLeft 
         };
         localStorage.setItem("userScore", JSON.stringify(finalScore));
+        message.textContent = "Thank you for your submission";
 
 
     })  
   }
 
+ 
 startPage();

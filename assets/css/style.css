@@ -1,0 +1,58 @@
+::placeholder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+}
+
+/* header{
+
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 25px;
+
+} */
+
+
+.quiz{
+    background-position: 50px;
+    text-align: center;
+    display: block;
+}
+
+#answer-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#countdown{
+    position: relative;
+    top: -50px;
+    right: -1700px;
+}
+
+
+#submit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#view-score{
+    position: relative;
+    top: -50px;
+    right: -20px;
+}
+
+#question{
+    font-weight: 900;
+    padding-top: 75px;
+    font-size: 50px;
+}
+
