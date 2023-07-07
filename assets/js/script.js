@@ -94,6 +94,7 @@ message.textContent = ""; //Need this to not get null error message when submitt
 var currentQuestionNumber = 0;
 let score = 0;
 var timeLeft = 30;
+var highScore = 0;
 
 function startPage(){
 
@@ -344,6 +345,16 @@ function answerQuestion(){
 
 
     })  
+  }
+
+  function recieveHighScore(){
+
+    var storedHighScore = JSON.parse(local.localStorage.getItem("userScore"));
+
+    if(storedHighScore !== null){
+        highScore = storedHighScore;
+
+    }
   }
 
  

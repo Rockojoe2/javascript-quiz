@@ -9,14 +9,6 @@ h1{
     justify-content: center;
 }
 
-/* header{
-
-    display: flex;
-    justify-content: space-between;
-    margin: 0px 25px;
-
-} */
-
 
 .quiz{
     background-position: 50px;
@@ -36,6 +28,10 @@ h1{
     right: -1700px;
 }
 
+#initials{
+    text-align: center;
+}
+
 
 #submit-button{
     display: flex;
@@ -43,6 +39,9 @@ h1{
     align-items: center;
 }
 
+#user-high-score{
+    text-align: center;
+}
 
 #view-score{
     position: relative;
