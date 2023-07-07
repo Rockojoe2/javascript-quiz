@@ -22,6 +22,8 @@ if statements for the question and answer, if question is correct the nmove on, 
 
 */
 
+//Question bank with the question and answers. the Question text and button texts should update based off of this question bank.
+
 const questionBank = [
     {
         question: "Javascript is an _______ language?", 
@@ -76,6 +78,8 @@ const questionBank = [
 
 //console.log(questionBank[0]); //Checking to see if my question bank is working
 
+//Our global variables. Assigning variables based on the ID so I can change them whenever. EX: Can change the text that has a "question" id because I defined the variable below by just doing question.textContent = "anything". Assigning these global variables helps me change them to how I want throughout the code easier.
+
 var question = document.getElementById("question");
 var answerButton = document.getElementById("answer-button");
 var nextButton = document.getElementById("next-button");
@@ -98,7 +102,7 @@ var highScore = 0;
 
 function startPage(){
 
-    //Hide the buttons in start page
+    //Hide the answer choice buttons in start page
 
     document.getElementById("first-choice").style.display = "none";
     document.getElementById("second-choice").style.display = "none";
@@ -128,6 +132,7 @@ function displayQuestion(){
     document.getElementById("next-button").style.display = "none"; 
     document.getElementById("view-score").style.display = "none";
 
+    //This will display the very first question. currentQuestionNumber is defined globally as 0, so we are getting the first question, and the answer choices to the first question.
 
     question.textContent = questionBank[currentQuestionNumber].question;
     selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].text;
@@ -138,21 +143,27 @@ function displayQuestion(){
     //console.log(questionBank.length);
     // countdown();
 
+    //Answer question has the logic of when the user answers the question. If it's true, it will go onto the next question, if not, time is deducted. Timer is also in this function and immediately starts as soon as the quiz begins.
+
     answerQuestion();
   
     
 
 }
 
+//answerQuestion function has the logic. If the user answers the question correctly, we go to the next question, if not, user loses time.
+
 function answerQuestion(){
 
-    //Timer
+    //Timer for the quiz. It starts automatically when the user starts the quiz because it's not tied up to any conditional statement. Put the timer here because it was easier to manipulate the time if the variables were in the same function.
     
     var timeInterval = setInterval(function () {
 
     timeLeft--;
     timerEl.value = timeLeft;
     timerEl.textContent = timeLeft + " seconds left.";
+
+    //Made it <=0 because you could get a negative number if there was for example 3 seconds left, and the user got the question wrong. This if statement makes it so that if timeLeft is 0 or below, we clear the timeInterval and then display our displayGameOverMessage function.
 
     if(timeLeft <= 0)
     {
@@ -170,12 +181,14 @@ function answerQuestion(){
         if (selectedAnswer1.textContent = questionBank[currentQuestionNumber].answers[0].correct == true){
             //console.log("Correct!");
 
-            //If the button selected is correct, you go onto the next question, and the next question is updated along with the buttons as long as there is an next question.
+            //If the button selected is correct, you go onto the next question, and the next question is updated along with the buttons as long as there is an next question. The same logic is used for every button.
 
             if(currentQuestionNumber <= questionBank.length){
 
                 currentQuestionNumber++;
                 console.log(currentQuestionNumber);
+
+                //This if statement is needed because if this isn't here, once you get to the last question, it's going to look for the next questions and answers if you get the last question right. This if statement makes it so you go to the completedQuiz function once they get the last quesiton right.
 
                 if(currentQuestionNumber == questionBank.length)
                 {
@@ -292,10 +305,11 @@ function answerQuestion(){
     })
 }
 
+//The displayGameOverMessage is the function given if the player doesn't complete the quiz and goes to 0 or below for their time. We take away all the answer choice buttons, and then show the initials placeholder and submit button that we've been hiding since the beginning. User is given their score and when they enter their initials and click submit, the initials and score are saved in the local storage that we will call upon in the second index.html page and script2.js to show the user their previous score. The message that has been hidden also shows once you click submit.
 
   function displayGameOverMessage() {
 
-    //We'll give the player a game over screen and take away all the answer choices. Will add a box for them to put their initials to save hteir high score.
+    //We'll give the player a game over screen and take away all the answer choices. Will add a box for them to put their initials to save their high score.
 
     timerEl.textContent = "GAME OVER";
     question.textContent = "Please enter your initials to save your score!";
@@ -319,6 +333,8 @@ function answerQuestion(){
     })
   }
 
+
+  //The completeQuiz is the function given if the player goes through every question and doesn't hit timeLeft = 0;. We take away all the answer choice buttons, and then show the initials placeholder and submit button that we've been hiding since the beginning. User is given their score and when they enter their initials and click submit, the initials and score are saved in the local storage that we will call upon in the second index.html page and script2.js to show the user their previous score. The message that has been hidden also shows once you click submit.
 
   function completedQuiz(){
     question.textContent = "Congratulations you've completed the quiz! Please Enter your initials! Your score is: " + timeLeft;
@@ -347,15 +363,6 @@ function answerQuestion(){
     })  
   }
 
-  function recieveHighScore(){
 
-    var storedHighScore = JSON.parse(local.localStorage.getItem("userScore"));
 
-    if(storedHighScore !== null){
-        highScore = storedHighScore;
-
-    }
-  }
-
- 
 startPage();

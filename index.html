@@ -10,23 +10,26 @@
     <div>
     <header>
         <h1>Javascript Quiz</h1>
-        <h2 id= "countdown"></h2>
-        <h2 id= "view-score"><a href="./assets/page/index.html">View Old Score</a></h2>
+        <h2 id= "countdown"></h2> <!--Timer at the top right-->
+        <h2 id= "view-score"><a href="./assets/page/index.html">View Old Score</a></h2> <!--Link to previous score at top left-->
     </header>
         <div class = "quiz">
-            <h2 id = "question">Question goes here</h2>
+            <h2 id = "question">Question goes here</h2> <!--The question that will be changed depending on what the question bank is-->
             <div id="answer-button">
-                <button class="btn" id="first-choice">Answer 1</button>
+                <button class="btn" id="first-choice">Answer 1</button> <!--Answer choice button 1 that will be changed depending on what the question bank is-->
                 
                 <button class="btn" id="second-choice">Answer 2</button>
-                
+                <!--Answer choice button 2 that will be changed depending on what the question bank is-->
+
                 <button class="btn" id="third-choice">Answer 3</button>
+                <!--Answer choice button 3 that will be changed depending on what the question bank is-->
                 
                 <button class="btn" id="fourth-choice">Answer 4</button>
+                <!--Answer choice button 4 that will be changed depending on what the question bank is-->
             </div>
             <button id="next-button">Next</button>
-            <input placeholder="initials" id="initials" /> 
-            <div id="message"></div>
+            <input placeholder="initials" id="initials" /> <!--Where we'll put our initials at the end, this will be hidden until the game is over-->
+            <div id="message"></div> <!--Where we'll put our message at the end, this will be hidden until the game is over and the submit button is pressed-->
             <button class="btn" id="submit-button">Submit</button>
 
 
